@@ -15,11 +15,8 @@ Route::get('/folders/create', 'FolderController@showCreateForm')->name('folders.
 Route::post('/folders/create', 'FolderController@create');
 Route::get('/folders/{id}/tasks/create', 'TaskController@showCreateForm')->name('tasks.create');
 Route::post('/folders/{id}/tasks/create', 'TaskController@create');
-Route::get('/folders/{id}/tasks/{task_id}/edit', 'TaskController@showCEditForm')->name('tasks.edit');
+Route::get('/folders/{id}/tasks/{task_id}/edit', 'TaskController@showEditForm')->name('tasks.edit');
 Route::post('/folders/{id}/tasks/{task_id}/edit', 'TaskController@edit');
 
-Route::get('/', function () {
-    return view('welcome');
-}
-
-);
+Route::get('/','HomeController@index')->name('home');
+Auth::routes();
