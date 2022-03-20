@@ -4,6 +4,8 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use App\Mail\ResetPassword;
+use Illuminate\Support\Facades\Mail;
 
 class Task extends Model
 {
@@ -39,5 +41,10 @@ class Task extends Model
     {
         return Carbon::createFromFormat('Y-m-d', $this->attributes['due_date'])
             ->format('Y/m/d');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        Mail::to($this)->send(new ResetPassword($token));
     }
 }
